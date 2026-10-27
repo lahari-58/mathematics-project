@@ -5,14 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MathLab - Mathematics Programs</title>
 <style>
-* {
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 body {
     margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
@@ -20,77 +14,87 @@ body {
     color: #252744;
     line-height: 1.6;
 }
-
-/* Website Header */
 header {
+    position: relative;
+    overflow: hidden;
+    text-align: left;
     background: linear-gradient(135deg, #312e81, #5145cd, #7c3aed);
     color: white;
-    text-align: center;
-    padding: 45px 20px;
+    padding: 52px max(24px, calc((100vw - 1150px)/2));
     box-shadow: 0 5px 20px rgba(49, 46, 129, 0.18);
 }
-
+header::after {
+    content: "∑  ∫  ∇  π";
+    position: absolute;
+    right: 6%;
+    top: 18%;
+    font-size: clamp(28px, 5vw, 56px);
+    font-weight: 700;
+    letter-spacing: 12px;
+    color: rgba(255,255,255,.12);
+    transform: rotate(-8deg);
+    pointer-events: none;
+}
+header h1, header p {
+    position: relative;
+    z-index: 1;
+    max-width: 760px;
+}
 header h1 {
     margin: 0;
     font-size: clamp(30px, 5vw, 44px);
     font-weight: 800;
     letter-spacing: 1px;
 }
-
 header p {
     margin: 10px 0 0;
-    font-size: 16px;
+    font-size: 17px;
     color: #e8e7ff;
 }
-
-/* Main Container */
 .container {
     max-width: 1150px;
     margin: 35px auto;
     padding: 0 22px;
 }
-
-/* Introduction */
 .intro {
     text-align: center;
     margin-bottom: 35px;
+    background: linear-gradient(135deg,#fff,#f2f1ff);
+    border: 1px solid #e6e5fb;
+    border-radius: 20px;
+    padding: 26px 22px;
+    box-shadow: 0 12px 32px rgba(49,46,129,.06);
 }
-
 .intro h2 {
     font-size: clamp(25px, 4vw, 32px);
     color: #312e81;
     margin-bottom: 10px;
 }
-
 .intro p {
     max-width: 700px;
     margin: 0 auto;
     color: #666984;
     font-size: 16px;
 }
-
-/* Program Cards */
 .programs {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
     gap: 24px;
 }
-
 .card {
     background: white;
     padding: 25px;
-    border: 1px solid #e8e8f7;
-    border-radius: 16px;
-    box-shadow: 0 5px 18px rgba(49, 46, 129, 0.06);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: 1px solid #e9e8f6;
+    border-radius: 18px;
+    box-shadow: 0 7px 22px rgba(35,32,92,.06);
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
     min-width: 0;
 }
-
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 12px 28px rgba(49, 46, 129, 0.12);
+    box-shadow: 0 15px 34px rgba(49,46,129,.14);
+    border-color: #b7b2fa;
 }
-
 .card h3 {
     color: #3730a3;
     font-size: 19px;
@@ -98,14 +102,11 @@ header p {
     margin-top: 0;
     margin-bottom: 12px;
 }
-
 .card p {
     color: #666984;
     font-size: 14px;
     min-height: 44px;
 }
-
-/* Buttons */
 button {
     background: linear-gradient(135deg, #5145cd, #7c3aed);
     color: white;
@@ -116,21 +117,16 @@ button {
     margin: 7px 0;
     font-size: 14px;
     font-weight: 600;
-    transition: background 0.2s ease, transform 0.2s ease;
+    transition: background .2s ease, transform .2s ease;
 }
-
 button:hover {
     background: linear-gradient(135deg, #3730a3, #6d28d9);
     transform: translateY(-1px);
 }
-
-button:focus-visible,
-input:focus-visible {
+button:focus-visible, input:focus-visible, select:focus-visible {
     outline: 3px solid #a5b4fc;
     outline-offset: 2px;
 }
-
-/* Calculator Area */
 #calculator {
     display: none;
     margin-top: 35px;
@@ -138,26 +134,18 @@ input:focus-visible {
     background: white;
     border: 1px solid #e2e4f5;
     border-radius: 16px;
-    box-shadow: 0 6px 24px rgba(49, 46, 129, 0.08);
-    scroll-margin-top: 20px;
+    box-shadow: 0 6px 24px rgba(49,46,129,.08);
+    scroll-margin-top: 24px;
     min-width: 0;
 }
-
 #calculator h2 {
     color: #312e81;
     margin-top: 0;
     border-bottom: 2px solid #eeedff;
     padding-bottom: 12px;
 }
-
-#calculator h3 {
-    color: #4338ca;
-}
-
-/* Input Fields */
-input,
-select,
-textarea {
+#calculator h3 { color: #4338ca; }
+input, select, textarea {
     max-width: 100%;
     padding: 10px;
     margin: 5px;
@@ -168,15 +156,10 @@ textarea {
     background: #fff;
     color: #252744;
 }
-
-input:focus,
-select:focus,
-textarea:focus {
+input:focus, select:focus, textarea:focus {
     border-color: #7165e8;
     outline: 2px solid #e4e1ff;
 }
-
-/* Matrix Inputs */
 .matrix-input {
     display: grid;
     gap: 8px;
@@ -184,19 +167,8 @@ textarea:focus {
     max-width: 100%;
     overflow-x: auto;
 }
-
-.matrix-row {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-
-.matrix-row input {
-    width: 75px;
-    min-width: 55px;
-}
-
-/* Results */
+.matrix-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.matrix-row input { width: 75px; min-width: 55px; }
 .result {
     overflow-x: auto;
     margin: 20px 0;
@@ -206,35 +178,19 @@ textarea:focus {
     border-radius: 10px;
     overflow-wrap: anywhere;
 }
-
-.result h3 {
-    margin-top: 0;
-}
-
-/* Tables */
+.result h3 { margin-top: 0; }
 table {
     border-collapse: collapse;
     margin: 15px 0;
     max-width: 100%;
 }
-
-td,
-th {
+td, th {
     border: 1px solid #d9daf0;
     padding: 10px 15px;
     text-align: right;
 }
-
-th {
-    background: #eeedff;
-    color: #312e81;
-}
-
-tr:nth-child(even) {
-    background: #fafaff;
-}
-
-/* Footer */
+th { background: #eeedff; color: #312e81; }
+tr:nth-child(even) { background: #fafaff; }
 footer {
     text-align: center;
     padding: 25px 15px;
@@ -243,252 +199,174 @@ footer {
     font-size: 14px;
     border-top: 1px solid #e7e8f5;
 }
-
-/* Mobile Layout */
+#calculator { scroll-margin-top: 24px; }
+.ml-explanation-panel { margin-top: 12px; }
+.ml-explanation-panel ol { padding-left: 24px; }
+.ml-explanation-panel li { margin: 9px 0; }
 @media (max-width: 600px) {
-    header {
-        padding: 32px 15px;
-    }
-
-    .container {
-        margin: 25px auto;
-        padding: 0 14px;
-    }
-
-    .programs {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .card {
-        padding: 20px;
-    }
-
-    #calculator {
-        padding: 18px;
-    }
-
-    input {
-        max-width: calc(100% - 15px);
-    }
-
-    td,
-    th {
-        padding: 8px;
+    header { padding: 32px 15px; }
+    .container { margin: 25px auto; padding: 0 14px; }
+    .programs { grid-template-columns: 1fr; gap: 16px; }
+    .card { padding: 20px; }
+    #calculator { padding: 18px; }
+    input { max-width: calc(100% - 15px); }
+    td, th { padding: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *,*::before,*::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+        animation: none !important;
     }
 }
 </style>
 </head>
-
 <body>
-
 <header>
     <h1>MathLab</h1>
-    <p>Explore Mathematics Through Java Programs</p>
+    <p>Explore mathematics, calculate results, and understand how they work.</p>
 </header>
 
 <div class="container">
-
     <div class="intro">
-        <h2>Welcome to MathLab!</h2>
-        <p>Select a program to get started.</p>
+        <h2>Welcome to MathLab</h2>
+        <p>Select a program, enter your own values, and explore the result.</p>
+        <p style="margin-top:14px">
+            <span style="display:inline-block;padding:6px 12px;border-radius:999px;background:#e9e7ff;color:#4338a8;font-size:13px;font-weight:700">8 PROGRAMS</span>
+            <span style="display:inline-block;padding:6px 12px;border-radius:999px;background:#e8f7ef;color:#176b43;font-size:13px;font-weight:700">CALCULATE · UNDERSTAND · EXPLORE</span>
+        </p>
     </div>
 
     <div class="programs">
-
         <div class="card">
             <h3>1. RREF Matrix</h3>
             <p>Calculate the reduced row echelon form of a matrix.</p>
             <button onclick="openRREF()">Open Calculator</button>
         </div>
-
         <div class="card">
             <h3>2. Gaussian Elimination</h3>
-            <p>Solve four linear equations using partial pivoting.</p>
+            <p>Solve a system of linear equations using partial pivoting.</p>
             <button onclick="openGaussian()">Open Calculator</button>
         </div>
-
         <div class="card">
             <h3>3. Orthogonal Complement</h3>
             <p>Explore orthogonal complements of vector spaces.</p>
             <button onclick="openOrthogonal()">Open Calculator</button>
         </div>
-
         <div class="card">
             <h3>4. Null Space</h3>
-            <p>Study row spaces and null spaces.</p>
+            <p>Study null spaces and verify matrix-vector products.</p>
             <button onclick="openVerifyOrthogonal()">Open Calculator</button>
         </div>
-
         <div class="card">
             <h3>5. Polygon Transformation</h3>
-            <p>Understand polygon translation and rotation.</p>
+            <p>Explore polygon translation and rotation.</p>
             <button onclick="openPolygon()">Open Calculator</button>
         </div>
-
         <div class="card">
             <h3>6. Least Squares</h3>
             <p>Fit a model using the least-squares method.</p>
             <button onclick="openLeastSquares()">Open Calculator</button>
         </div>
-
         <div class="card">
-    <h3>7. Gradient Function</h3>
-
-    <p>Calculate the gradient of f(x,y,z) = x² + y² + z².</p>
-
-    <button onclick="openGradientFunction()">
-        Open Calculator
-    </button>
-</div>
-
+            <h3>7. Gradient Function</h3>
+            <p>Enter a mathematical function and calculate its gradient.</p>
+            <button onclick="openGradientFunction()">Open Calculator</button>
+        </div>
         <div class="card">
             <h3>8. Gradient Quiver Plot</h3>
-            <p>Visualize a gradient vector field.</p>
-            <button onclick="openGradientQuiverPlot()">View Gradient Plot</button>
+            <p>Calculate a general gradient and view a two-dimensional slice.</p>
+            <button onclick="openGradientQuiverPlot()">Open Calculator</button>
         </div>
-
     </div>
 
     <section id="calculator">
-
         <h2 id="calculatorTitle">Math Calculator</h2>
         <div id="calculatorContent"></div>
-
     </section>
-
 </div>
 
-<footer>
-    MathLab | Java Mathematics Learning Project
-</footer>
+<footer>MathLab | Java Mathematics Learning Project</footer>
 
 <script>
-
-function showComingSoon(name) {
-    alert(name + " will be connected in a later step.");
-}
-
-/* COMMON FUNCTION TO OPEN THE CALCULATOR AREA */
-
 function showCalculator(title) {
     const calculator = document.getElementById("calculator");
-
     calculator.style.display = "block";
-
     document.getElementById("calculatorTitle").textContent = title;
-
-    calculator.scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    calculator.scrollIntoView({behavior: "smooth", block: "start"});
 }
 
-/* OPEN RREF CALCULATOR */
+function displayMatrix(matrix) {
+    let html = "<table>";
+    for (const row of matrix) {
+        html += "<tr>";
+        for (const value of row) {
+            const clean = Math.abs(value) < 1e-9 ? 0 : value;
+            html += "<td>" + Number(clean).toFixed(3) + "</td>";
+        }
+        html += "</tr>";
+    }
+    return html + "</table>";
+}
 
+/* PROGRAM 1: RREF MATRIX */
 function openRREF() {
     showCalculator("RREF Matrix Calculator");
-
     document.getElementById("calculatorContent").innerHTML = `
-        <p>Enter the number of rows and columns and then enter the matrix values.</p>
-
+        <p>Choose the dimensions of your matrix and enter its values.</p>
         <label>Number of rows:</label>
         <input type="number" id="rows" min="1" max="10" value="2">
-
         <label>Number of columns:</label>
         <input type="number" id="cols" min="1" max="10" value="2">
-
         <br>
-
         <button onclick="createMatrixInputs()">Create Matrix</button>
-
         <div id="matrixInputs"></div>
-
         <button onclick="calculateRREF()">Calculate RREF</button>
-
-        <p id="error" style="color:red;"></p>
-
-        <div id="results" class="result"></div>
-    `;
-
+        <p id="error" style="color:#b00020"></p>
+        <div id="results" class="result"></div>`;
     createMatrixInputs();
 }
-
-/* CREATE RREF MATRIX INPUTS */
 
 function createMatrixInputs() {
     const rows = Number(document.getElementById("rows").value);
     const cols = Number(document.getElementById("cols").value);
-
     const area = document.getElementById("matrixInputs");
-
     document.getElementById("results").innerHTML = "";
     document.getElementById("error").textContent = "";
 
     if (!Number.isInteger(rows) || !Number.isInteger(cols) ||
         rows < 1 || cols < 1 || rows > 10 || cols > 10) {
-
         document.getElementById("error").textContent =
             "Rows and columns must be between 1 and 10.";
-
         area.innerHTML = "";
         return;
     }
 
     area.innerHTML = "<h3>Matrix Elements</h3>";
-
     const grid = document.createElement("div");
     grid.className = "matrix-input";
 
     for (let i = 0; i < rows; i++) {
         const row = document.createElement("div");
         row.className = "matrix-row";
-
         for (let j = 0; j < cols; j++) {
             const input = document.createElement("input");
-
             input.type = "number";
             input.step = "any";
             input.id = "cell-" + i + "-" + j;
             input.placeholder = "R" + (i + 1) + " C" + (j + 1);
-
             row.appendChild(input);
         }
-
         grid.appendChild(row);
     }
-
     area.appendChild(grid);
 }
-
-/* DISPLAY A MATRIX */
-
-function displayMatrix(matrix) {
-    let html = "<table>";
-
-    for (const row of matrix) {
-        html += "<tr>";
-
-        for (const value of row) {
-            const clean = Math.abs(value) < 1e-9 ? 0 : value;
-            html += "<td>" + Number(clean).toFixed(3) + "</td>";
-        }
-
-        html += "</tr>";
-    }
-
-    return html + "</table>";
-}
-
-/* CALCULATE RREF USING JAVA BACKEND */
 
 async function calculateRREF() {
     const rows = Number(document.getElementById("rows").value);
     const cols = Number(document.getElementById("cols").value);
-
     const error = document.getElementById("error");
     const results = document.getElementById("results");
-
     error.textContent = "";
     results.innerHTML = "";
 
@@ -499,855 +377,868 @@ async function calculateRREF() {
     }
 
     const matrix = [];
-
     for (let i = 0; i < rows; i++) {
         for (let j = 0; j < cols; j++) {
             const field = document.getElementById("cell-" + i + "-" + j);
-
             if (!field || field.value.trim() === "" ||
                 !Number.isFinite(Number(field.value))) {
-                error.textContent =
-                    "Please enter a valid number in every matrix cell.";
+                error.textContent = "Enter a valid number in every matrix cell.";
                 return;
             }
-
             matrix.push(Number(field.value));
         }
     }
 
     results.textContent = "Calculating...";
-
     try {
         const response = await fetch("/api/rref", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                rows: rows,
-                cols: cols,
-                matrix: matrix
-            })
+            body: JSON.stringify({rows, cols, matrix})
         });
-
         const data = await response.json();
-
         if (!response.ok || data.error) {
             throw new Error(data.error || "RREF calculation failed.");
         }
-
-        results.innerHTML =
-            "<h3>Original Matrix</h3>" +
+        results.innerHTML = "<h3>Original Matrix</h3>" +
             displayMatrix(data.original) +
             "<h3>Reduced Row Echelon Form (RREF)</h3>" +
             displayMatrix(data.rref);
-
-    } catch (error) {
-        results.textContent =
-            "Calculation failed. Make sure the Java server is running.";
+        const original = data.original;
+        const reduced = data.rref;
+        addExplanation(results, "RREF — Explanation", `
+            <p><strong>Original matrix:</strong></p>${displayMatrix(original)}
+            <p>Elementary row operations preserve the solution set.</p>
+            <p>Rows can be swapped, multiplied by a non-zero constant,
+            or replaced by a row plus a multiple of another row.</p>
+            <p>The matrix is reduced by creating leading 1s and making
+            the other entries in each pivot column zero.</p>
+            <p><strong>Final RREF:</strong></p>${displayMatrix(reduced)}`);
+    } catch (e) {
+        error.textContent = "Calculation failed. Check that the Java server is running.";
     }
 }
+/* SHARED EXPLANATION BUTTON */
+function addExplanation(target, title, content) {
+    if (!target) return;
+    target.querySelectorAll(".ml-explanation-button,.ml-explanation-panel")
+        .forEach(el => el.remove());
 
-/* OPEN GAUSSIAN ELIMINATION CALCULATOR */
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "ml-explanation-button";
+    button.textContent = "View Explanation";
+    button.setAttribute("aria-expanded", "false");
 
+    const panel = document.createElement("div");
+    panel.className = "result ml-explanation-panel";
+    panel.style.display = "none";
+    panel.innerHTML = `<h3>${title}</h3>${content}`;
+
+    button.addEventListener("click", () => {
+        const opening = panel.style.display === "none";
+        panel.style.display = opening ? "block" : "none";
+        button.textContent = opening ? "Hide Explanation" : "View Explanation";
+        button.setAttribute("aria-expanded", String(opening));
+    });
+
+    target.append(button, panel);
+}
+
+function mlEscape(value) {
+    return String(value).replace(/[&<>"']/g, c => ({
+        "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"
+    }[c]));
+}
+
+/* PROGRAM 2: GAUSSIAN ELIMINATION */
 function openGaussian() {
     showCalculator("Gaussian Elimination with Partial Pivoting");
-
     document.getElementById("calculatorContent").innerHTML = `
-        <p>Enter the augmented matrix for four equations.</p>
-        <p>Enter four rows and five values per row. The last column contains the right-hand-side values.</p>
-
+        <p>Enter the augmented matrix for four equations. Each row contains
+        four coefficients followed by the right-hand-side value.</p>
         <div id="gaussianInputs"></div>
-
         <button onclick="calculateGaussian()">Calculate Solution</button>
-
-        <div id="gaussianResult" class="result"></div>
-    `;
-
-    const container = document.getElementById("gaussianInputs");
+        <div id="gaussianResult" class="result"></div>`;
 
     let html = "<table>";
-
     for (let i = 0; i < 4; i++) {
         html += "<tr>";
-
         for (let j = 0; j < 5; j++) {
-            html +=
-                '<td><input type="number" step="any" ' +
-                'id="g' + i + '_' + j + '" ' +
-                'placeholder="' + (j === 4 ? "b" : "a") + '" ' +
-                'style="width:65px"></td>';
+            html += `<td><input type="number" step="any" id="g${i}_${j}"
+                placeholder="${j === 4 ? "b" : "a"}" style="width:65px"></td>`;
         }
-
         html += "</tr>";
     }
-
-    html += "</table>";
-
-    container.innerHTML = html;
+    document.getElementById("gaussianInputs").innerHTML = html + "</table>";
 }
-
-/* CALCULATE GAUSSIAN SOLUTION USING JAVA BACKEND */
 
 async function calculateGaussian() {
     const matrix = [];
-
     for (let i = 0; i < 4; i++) {
         for (let j = 0; j < 5; j++) {
-            const field = document.getElementById("g" + i + "_" + j);
-
+            const field = document.getElementById(`g${i}_${j}`);
             if (!field || field.value.trim() === "" ||
                 !Number.isFinite(Number(field.value))) {
                 alert("Please fill in all 20 values with valid numbers.");
-                if (field) field.focus();
+                field?.focus();
                 return;
             }
-
             matrix.push(Number(field.value));
         }
     }
 
-    const resultBox = document.getElementById("gaussianResult");
-    resultBox.textContent = "Calculating...";
-
+    const out = document.getElementById("gaussianResult");
+    out.textContent = "Calculating...";
     try {
         const response = await fetch("/api/gaussian", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({matrix: matrix})
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({matrix})
         });
-
         const data = await response.json();
+        if (!response.ok || data.error)
+            throw new Error(data.error || "Calculation failed.");
 
-        if (!response.ok || data.error) {
-            throw new Error(data.error || "The calculation failed.");
-        }
-
-        let output = "<h3>Original Augmented Matrix</h3>";
-        output += displayMatrix(data.original);
-        output += "<h3>Solution</h3>";
-
-        data.solution.forEach((value, index) => {
-            output += "<p>x" + (index + 1) + " = " +
-                Number(value).toFixed(4) + "</p>";
+        let html = "<h3>Original Augmented Matrix</h3>" +
+            displayMatrix(data.original) + "<h3>Solution</h3>";
+        data.solution.forEach((v, i) => {
+            html += `<p>x${i + 1} = ${Number(v).toFixed(6)}</p>`;
         });
+        out.innerHTML = html;
 
-        resultBox.innerHTML = output;
-
-    } catch (error) {
-        resultBox.textContent =
-            "Calculation failed. Check that the website server is running.";
+        const equations = [];
+        for (let i = 0; i < 4; i++) {
+            const v = Array.from({length:5}, (_,j) =>
+                Number(document.getElementById(`g${i}_${j}`).value));
+            equations.push(`${v[0]}x₁ + ${v[1]}x₂ + ${v[2]}x₃ + ${v[3]}x₄ = ${v[4]}`);
+        }
+        addExplanation(out, "Gaussian Elimination — Explanation", `
+            <p><strong>Equations entered:</strong></p>
+            <ol>${equations.map(e => `<li>${mlEscape(e)}</li>`).join("")}</ol>
+            <p>Partial pivoting selects a suitable pivot in each column,
+            swapping rows when needed to reduce numerical instability.</p>
+            <p>Elimination uses multiples of pivot rows to make the entries
+            below each pivot zero. Back-substitution then solves the
+            resulting triangular system, starting from the last equation.</p>
+            <p><strong>Calculated solution:</strong></p>
+            ${data.solution.map((v,i) => `<p>x${i+1} = ${Number(v).toFixed(6)}</p>`).join("")}`);
+    } catch (e) {
+        out.innerHTML = `<p style="color:#b00020">${mlEscape(e.message)}
+            Check that Spring Boot is running.</p>`;
     }
 }
 
-/* OPEN ORTHOGONAL COMPLEMENT CALCULATOR */
-
+/* PROGRAM 3: ORTHOGONAL COMPLEMENT */
 function openOrthogonal() {
     showCalculator("Orthogonal Complement");
-
     document.getElementById("calculatorContent").innerHTML = `
-        <p>Enter the matrix dimensions and its values.</p>
-
-        <label>Number of rows:</label>
-        <input type="number" id="orthRows" min="1" max="10" value="2">
-
-        <label>Number of columns:</label>
-        <input type="number" id="orthCols" min="1" max="10" value="3">
-
+        <p>Choose the matrix dimensions and enter the values.</p>
+        <label>Rows:</label><input type="number" id="orthRows" min="1" max="10" value="2">
+        <label>Columns:</label><input type="number" id="orthCols" min="1" max="10" value="3">
         <button onclick="createOrthogonalInputs()">Create Matrix</button>
-
         <div id="orthMatrixInputs"></div>
-
-        <br>
-
         <button onclick="calculateOrthogonal()">Calculate Orthogonal Complement</button>
-
-        <div id="orthResults" class="result"></div>
-    `;
-
+        <div id="orthResults" class="result"></div>`;
     createOrthogonalInputs();
 }
 
 function createOrthogonalInputs() {
     const rows = Number(document.getElementById("orthRows").value);
     const cols = Number(document.getElementById("orthCols").value);
-
     if (!Number.isInteger(rows) || !Number.isInteger(cols) ||
         rows < 1 || rows > 10 || cols < 1 || cols > 10) {
         alert("Enter rows and columns between 1 and 10.");
         return;
     }
-
     let html = "<table>";
-
-    for (let i = 0; i < rows; i++) {
+    for (let i=0; i<rows; i++) {
         html += "<tr>";
-
-        for (let j = 0; j < cols; j++) {
-            html += `<td><input type="number" step="any"
-                id="orth_${i}_${j}" value="0" style="width:65px"></td>`;
+        for (let j=0; j<cols; j++) {
+            html += `<td><input type="number" step="any" id="orth_${i}_${j}"
+                value="0" style="width:65px"></td>`;
         }
-
         html += "</tr>";
     }
-
-    html += "</table>";
-
-    document.getElementById("orthMatrixInputs").innerHTML = html;
+    document.getElementById("orthMatrixInputs").innerHTML = html + "</table>";
 }
 
 async function calculateOrthogonal() {
     const rows = Number(document.getElementById("orthRows").value);
     const cols = Number(document.getElementById("orthCols").value);
     const matrix = [];
-
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            const input = document.getElementById(`orth_${i}_${j}`);
-            const value = input.value.trim();
-
-            if (value === "" || !Number.isFinite(Number(value))) {
-                alert("Please enter a number in every matrix cell.");
+    for (let i=0; i<rows; i++) {
+        for (let j=0; j<cols; j++) {
+            const field = document.getElementById(`orth_${i}_${j}`);
+            if (!field || field.value.trim() === "" ||
+                !Number.isFinite(Number(field.value))) {
+                alert("Please enter a valid number in every matrix cell.");
                 return;
             }
-
-            matrix.push(Number(value));
+            matrix.push(Number(field.value));
         }
     }
 
-    const results = document.getElementById("orthResults");
-    results.innerHTML = "<p>Calculating...</p>";
-
+    const out = document.getElementById("orthResults");
+    out.textContent = "Calculating...";
     try {
         const response = await fetch("/api/orthogonal", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type":"application/json"},
             body: JSON.stringify({rows, cols, matrix})
         });
-
         const data = await response.json();
-
-        if (!response.ok || data.error) {
+        if (!response.ok || data.error)
             throw new Error(data.error || "Calculation failed.");
-        }
 
-        let output = `<h3>${data.message || "Orthogonal Complement"}</h3>`;
-        output += `<p>Dimension: ${data.dimension}</p>`;
-
-        data.basis.forEach((vector, index) => {
-            output += `<p>Basis vector ${index + 1}: (${
-                vector.map(value => Number(value).toFixed(3)).join(", ")
-            })</p>`;
+        let html = `<h3>${mlEscape(data.message || "Orthogonal Complement")}</h3>
+            <p>Dimension: ${data.dimension}</p>`;
+        data.basis.forEach((v,i) => {
+            html += `<p>Basis vector ${i+1}: (${v.map(n => Number(n).toFixed(6)).join(", ")})</p>`;
         });
-
-        results.innerHTML = output;
-
-    } catch (error) {
-        results.innerHTML =
-            "<p>Calculation failed. Check that the Java server is running.</p>";
+        out.innerHTML = html;
+        addExplanation(out, "Orthogonal Complement — Explanation", `
+            <p>The orthogonal complement contains vectors whose dot product
+            with every vector in the given row space is zero.</p>
+            <p>For a matrix A, the condition is A·v = 0. Solving this
+            homogeneous system gives the vectors orthogonal to the rows
+            of A. The independent basis vectors returned above span that
+            complement.</p>
+            <p>The dimension is the number of independent basis vectors
+            in the result.</p>
+            <p><strong>Calculated basis:</strong></p>
+            ${data.basis.map((v,i) => `<p>v${i+1} = (${v.map(n => Number(n).toFixed(6)).join(", ")})</p>`).join("")}`);
+    } catch (e) {
+        out.innerHTML = `<p style="color:#b00020">${mlEscape(e.message)}
+            Check that Spring Boot is running.</p>`;
     }
 }
 
-/* OPEN NULL SPACE VERIFICATION CALCULATOR */
-
+/* PROGRAM 4: NULL SPACE / ORTHOGONALITY VERIFICATION */
 function openVerifyOrthogonal() {
     showCalculator("Verify Orthogonal Null Space");
-
     document.getElementById("calculatorContent").innerHTML = `
-        <p>Enter your matrix to verify the relationship between the orthogonal complement of Row(A) and Null(A).</p>
-
-        <label>Number of rows:</label>
-        <input type="number" id="verifyRows" min="1" max="10" value="2">
-
-        <label>Number of columns:</label>
-        <input type="number" id="verifyCols" min="1" max="10" value="3">
-
+        <p>Enter a matrix to find its null space and verify A × v = 0.</p>
+        <label>Rows:</label><input type="number" id="verifyRows" min="1" max="10" value="2">
+        <label>Columns:</label><input type="number" id="verifyCols" min="1" max="10" value="3">
         <button onclick="createVerifyInputs()">Create Matrix</button>
-
         <div id="verifyMatrixInputs"></div>
-
-        <br>
-
         <button onclick="calculateVerifyOrthogonal()">Verify</button>
-
-        <div id="verifyResults" class="result"></div>
-    `;
-
+        <div id="verifyResults" class="result"></div>`;
     createVerifyInputs();
 }
 
 function createVerifyInputs() {
     const rows = Number(document.getElementById("verifyRows").value);
     const cols = Number(document.getElementById("verifyCols").value);
-
     if (!Number.isInteger(rows) || !Number.isInteger(cols) ||
         rows < 1 || rows > 10 || cols < 1 || cols > 10) {
         alert("Enter rows and columns between 1 and 10.");
         return;
     }
-
     let html = "<table>";
-
-    for (let i = 0; i < rows; i++) {
+    for (let i=0; i<rows; i++) {
         html += "<tr>";
-
-        for (let j = 0; j < cols; j++) {
-            html += `<td><input type="number" step="any"
-                id="verify_${i}_${j}" value="0" style="width:65px"></td>`;
+        for (let j=0; j<cols; j++) {
+            html += `<td><input type="number" step="any" id="verify_${i}_${j}"
+                value="0" style="width:65px"></td>`;
         }
-
         html += "</tr>";
     }
-
-    html += "</table>";
-
-    document.getElementById("verifyMatrixInputs").innerHTML = html;
+    document.getElementById("verifyMatrixInputs").innerHTML = html + "</table>";
 }
 
 async function calculateVerifyOrthogonal() {
     const rows = Number(document.getElementById("verifyRows").value);
     const cols = Number(document.getElementById("verifyCols").value);
     const matrix = [];
-
-    for (let i = 0; i < rows; i++) {
-        for (let j = 0; j < cols; j++) {
-            const input = document.getElementById(`verify_${i}_${j}`);
-            const value = input.value.trim();
-
-            if (value === "" || !Number.isFinite(Number(value))) {
-                alert("Please enter a number in every matrix cell.");
+    for (let i=0; i<rows; i++) {
+        for (let j=0; j<cols; j++) {
+            const field = document.getElementById(`verify_${i}_${j}`);
+            if (!field || field.value.trim() === "" ||
+                !Number.isFinite(Number(field.value))) {
+                alert("Please enter a valid number in every matrix cell.");
                 return;
             }
-
-            matrix.push(Number(value));
+            matrix.push(Number(field.value));
         }
     }
 
-    const results = document.getElementById("verifyResults");
-    results.innerHTML = "<p>Verifying...</p>";
-
+    const out = document.getElementById("verifyResults");
+    out.textContent = "Verifying...";
     try {
         const response = await fetch("/api/verify-orthogonal", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: {"Content-Type":"application/json"},
             body: JSON.stringify({rows, cols, matrix})
         });
-
         const data = await response.json();
-
-        if (!response.ok || data.error) {
+        if (!response.ok || data.error)
             throw new Error(data.error || "Verification failed.");
-        }
 
-        let output = `<h3>${data.message}</h3>`;
-        output += `<p>Dimension of Null(A): ${data.dimension}</p>`;
-
-        data.basis.forEach((vector, index) => {
-            output += `<p>Basis vector ${index + 1}: (${
-                vector.map(value => Number(value).toFixed(3)).join(", ")
-            })</p>`;
-
-            const product = data.products[index]
-                .map(value => Number(value).toFixed(4))
-                .join(", ");
-
-            output += `<p>A × v${index + 1} = (${product})</p>`;
+        let html = `<h3>${mlEscape(data.message || "Null Space Verification")}</h3>
+            <p>Dimension of Null(A): ${data.dimension}</p>`;
+        data.basis.forEach((v,i) => {
+            html += `<p>Basis vector ${i+1}: (${v.map(n => Number(n).toFixed(6)).join(", ")})</p>`;
+            const product = data.products[i] || [];
+            html += `<p>A × v${i+1} = (${product.map(n => Number(n).toFixed(6)).join(", ")})</p>`;
         });
-
-        results.innerHTML = output;
-
-    } catch (error) {
-        results.innerHTML =
-            "<p>Calculation failed. Check that the Java server is running.</p>";
+        out.innerHTML = html;
+        addExplanation(out, "Null Space — Explanation", `
+            <p>A vector v belongs to Null(A) when multiplying the matrix A
+            by v gives the zero vector: A·v = 0.</p>
+            <p>The program finds basis vectors satisfying this condition,
+            then displays the product of A and each basis vector.</p>
+            <p>Products equal to zero, allowing for rounding, confirm the
+            null-space condition. These vectors are also orthogonal to
+            every row of A.</p>
+            <p><strong>Verification results:</strong></p>
+            ${data.basis.map((v,i) => `<p>v${i+1}: (${v.map(n => Number(n).toFixed(6)).join(", ")})</p>
+                <p>A × v${i+1}: (${(data.products[i] || []).map(n => Number(n).toFixed(6)).join(", ")})</p>`).join("")}`);
+    } catch (e) {
+        out.innerHTML = `<p style="color:#b00020">${mlEscape(e.message)}
+            Check that Spring Boot is running.</p>`;
     }
 }
 
-/* OPEN POLYGON TRANSFORMATION CALCULATOR */
-
+/* PROGRAM 5: POLYGON TRANSFORMATION */
 function openPolygon() {
     showCalculator("Polygon Transformation");
-
     document.getElementById("calculatorContent").innerHTML = `
         <h3>Enter Polygon Details</h3>
-
         <label>Number of vertices (3–20):</label>
         <input type="number" id="polygonN" value="3" min="3" max="20">
-
         <button onclick="createPolygonInputs()">Create Vertex Fields</button>
-
         <div id="polygonVertices"></div>
-
-        <br>
-
-        <label>Translation X:</label>
-        <input type="number" id="tx" value="1" step="any">
-
-        <label>Translation Y:</label>
-        <input type="number" id="ty" value="2" step="any">
-
-        <br><br>
-
-        <label>Rotation Angle (degrees):</label>
+        <label>Translation X:</label><input type="number" id="tx" value="1" step="any">
+        <label>Translation Y:</label><input type="number" id="ty" value="2" step="any">
+        <br><label>Rotation Angle (degrees):</label>
         <input type="number" id="angle" value="90" step="any">
-
-        <br><br>
-
-        <button onclick="calculatePolygon()">Transform Polygon</button>
-
-        <div id="polygonResult" class="result"></div>
-    `;
-
+        <br><button onclick="calculatePolygon()">Transform Polygon</button>
+        <div id="polygonResult" class="result"></div>`;
     createPolygonInputs();
 }
 
 function createPolygonInputs() {
-    const n = parseInt(document.getElementById("polygonN").value);
-
-    if (isNaN(n) || n < 3 || n > 20) {
-        alert("Enter a number between 3 and 20.");
+    const n = Number(document.getElementById("polygonN").value);
+    if (!Number.isInteger(n) || n < 3 || n > 20) {
+        alert("Enter a number of vertices between 3 and 20.");
         return;
     }
-
     let html = "<h3>Enter Each Vertex</h3>";
-
-    for (let i = 0; i < n; i++) {
-        html += `
-            <p>
-                Vertex ${i + 1}:
-                X <input type="number" id="px${i}"
-                    value="${i === 1 ? 1 : 0}" step="any">
-                Y <input type="number" id="py${i}"
-                    value="${i === 2 ? 1 : 0}" step="any">
-            </p>
-        `;
+    for (let i=0; i<n; i++) {
+        html += `<p>Vertex ${i+1}:
+            X <input type="number" id="px${i}" value="${i===1?1:0}" step="any">
+            Y <input type="number" id="py${i}" value="${i===2?1:0}" step="any"></p>`;
     }
-
     document.getElementById("polygonVertices").innerHTML = html;
 }
 
 async function calculatePolygon() {
-    const n = parseInt(document.getElementById("polygonN").value);
+    const n = Number(document.getElementById("polygonN").value);
     const vertices = [];
-
-    if (isNaN(n) || n < 3 || n > 20) {
+    if (!Number.isInteger(n) || n < 3 || n > 20) {
         alert("Enter a number of vertices between 3 and 20.");
         return;
     }
-
-    for (let i = 0; i < n; i++) {
-        const xField = document.getElementById("px" + i);
-        const yField = document.getElementById("py" + i);
-
-        if (!xField || !yField ||
-            xField.value.trim() === "" || yField.value.trim() === "") {
-            alert("Please fill in every vertex coordinate.");
+    for (let i=0; i<n; i++) {
+        const xf = document.getElementById("px"+i);
+        const yf = document.getElementById("py"+i);
+        if (!xf || !yf || xf.value.trim()==="" || yf.value.trim()==="" ||
+            !Number.isFinite(Number(xf.value)) || !Number.isFinite(Number(yf.value))) {
+            alert("Enter valid coordinates for every vertex.");
             return;
         }
-
-        const x = Number(xField.value);
-        const y = Number(yField.value);
-
-        if (!Number.isFinite(x) || !Number.isFinite(y)) {
-            alert("Enter valid numbers for every vertex.");
-            return;
-        }
-
-        vertices.push([x, y]);
+        vertices.push([Number(xf.value), Number(yf.value)]);
     }
-
     const tx = Number(document.getElementById("tx").value);
     const ty = Number(document.getElementById("ty").value);
     const angle = Number(document.getElementById("angle").value);
-
-    if (![tx, ty, angle].every(Number.isFinite)) {
+    if (![tx,ty,angle].every(Number.isFinite)) {
         alert("Enter valid translation and rotation values.");
         return;
     }
 
-    const resultBox = document.getElementById("polygonResult");
-    resultBox.innerHTML = "<p>Transforming polygon...</p>";
-
+    const out = document.getElementById("polygonResult");
+    out.textContent = "Transforming polygon...";
     try {
         const response = await fetch("/api/polygon", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                n: n,
-                vertices: vertices,
-                tx: tx,
-                ty: ty,
-                angle: angle
-            })
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({n, vertices, tx, ty, angle})
         });
+        const data = await response.json();
+        if (!response.ok || data.error)
+            throw new Error(data.error || "Unable to transform polygon.");
 
-        const result = await response.json();
+        const makeTable = (points) => `<table><tr><th>Vertex</th>
+            <th>X Coordinate</th><th>Y Coordinate</th></tr>` +
+            points.map((p,i) => `<tr><td>${i+1}</td><td>${Number(p[0]).toFixed(4)}</td>
+            <td>${Number(p[1]).toFixed(4)}</td></tr>`).join("") + "</table>";
 
-        if (!response.ok || result.error) {
-            throw new Error(result.error || "Unable to transform polygon.");
-        }
+        out.innerHTML = "<h3>Original Polygon</h3>" + makeTable(data.original) +
+            "<h3>Transformed Polygon</h3>" + makeTable(data.transformed) +
+            `<p>${mlEscape(data.message || "Transformation completed.")}</p>`;
 
-        let html = `
-            <h3>Original Polygon</h3>
-            <table>
-                <tr>
-                    <th>Vertex</th>
-                    <th>X Coordinate</th>
-                    <th>Y Coordinate</th>
-                </tr>
-        `;
-
-        result.original.forEach((point, i) => {
-            html += `
-                <tr>
-                    <td>${i + 1}</td>
-                    <td>${Number(point[0]).toFixed(2)}</td>
-                    <td>${Number(point[1]).toFixed(2)}</td>
-                </tr>
-            `;
-        });
-
-        html += `
-            </table>
-            <h3>Transformed Polygon</h3>
-            <table>
-                <tr>
-                    <th>Vertex</th>
-                    <th>X Coordinate</th>
-                    <th>Y Coordinate</th>
-                </tr>
-        `;
-
-        result.transformed.forEach((point, i) => {
-            html += `
-                <tr>
-                    <td>${i + 1}</td>
-                    <td>${Number(point[0]).toFixed(2)}</td>
-                    <td>${Number(point[1]).toFixed(2)}</td>
-                </tr>
-            `;
-        });
-
-        html += `
-            </table>
-            <p>${result.message || "Transformation completed."}</p>
-        `;
-
-        resultBox.innerHTML = html;
-
-    } catch (error) {
-        resultBox.innerHTML =
-            "<p>" + error.message +
-            " Check that Spring Boot is running and the /api/polygon endpoint exists.</p>";
+        addExplanation(out, "Polygon Transformation — Explanation", `
+            <p>Translation moves every vertex by adding ${tx} to each x-coordinate
+            and ${ty} to each y-coordinate.</p>
+            <p>Rotation uses the angle θ = ${angle}° and the formulas:</p>
+            <p>x′ = x cos θ − y sin θ</p><p>y′ = x sin θ + y cos θ</p>
+            <p>Each row in the transformed table corresponds to the same
+            numbered vertex in the original polygon.</p>
+            <p><strong>Original vertices:</strong></p>${makeTable(data.original)}
+            <p><strong>Transformed vertices:</strong></p>${makeTable(data.transformed)}`);
+    } catch (e) {
+        out.innerHTML = `<p style="color:#b00020">${mlEscape(e.message)}
+            Check that Spring Boot is running and the /api/polygon endpoint exists.</p>`;
     }
 }
 
-/* OPEN LEAST SQUARES CALCULATOR */
-
+/* PROGRAM 6: LEAST SQUARES */
 function openLeastSquares() {
     showCalculator("Least Squares (RSS)");
-
     document.getElementById("calculatorContent").innerHTML = `
         <h3>Least Squares Regression Calculator</h3>
-
-        <label>Number of data points (minimum 2):</label>
+        <label>Number of data points (2–100):</label>
         <input type="number" id="lsN" min="2" max="100" value="3">
-
-        <button onclick="createLeastSquaresInputs()">
-            Create Input Fields
-        </button>
-
+        <button onclick="createLeastSquaresInputs()">Create Input Fields</button>
         <div id="lsInputs"></div>
-
-        <br>
-
-        <button onclick="calculateLeastSquares()">
-            Calculate Least Squares
-        </button>
-
-        <div id="lsResult" class="result"></div>
-    `;
-
+        <button onclick="calculateLeastSquares()">Calculate Least Squares</button>
+        <div id="lsResult" class="result"></div>`;
     createLeastSquaresInputs();
 }
 
 function createLeastSquaresInputs() {
     const n = Number(document.getElementById("lsN").value);
-
     if (!Number.isInteger(n) || n < 2 || n > 100) {
         alert("Enter a whole number between 2 and 100.");
         return;
     }
-
-    let html = `
-        <h3>Enter Data Points</h3>
-        <table>
-            <tr>
-                <th>Data Point</th>
-                <th>X Value</th>
-                <th>Y Value</th>
-            </tr>
-    `;
-
-    for (let i = 0; i < n; i++) {
-        html += `
-            <tr>
-                <td>${i + 1}</td>
-                <td><input type="number" id="lsx${i}" step="any"></td>
-                <td><input type="number" id="lsy${i}" step="any"></td>
-            </tr>
-        `;
+    let html = `<h3>Enter Data Points</h3><table><tr>
+        <th>Data Point</th><th>X Value</th><th>Y Value</th></tr>`;
+    for (let i=0; i<n; i++) {
+        html += `<tr><td>${i+1}</td><td><input type="number" id="lsx${i}" step="any"></td>
+            <td><input type="number" id="lsy${i}" step="any"></td></tr>`;
     }
-
-    html += "</table>";
-
-    document.getElementById("lsInputs").innerHTML = html;
+    document.getElementById("lsInputs").innerHTML = html + "</table>";
 }
 
 async function calculateLeastSquares() {
     const n = Number(document.getElementById("lsN").value);
-    const x = [];
-    const y = [];
-
+    const x = [], y = [];
     if (!Number.isInteger(n) || n < 2 || n > 100) {
         alert("Enter a whole number between 2 and 100.");
         return;
     }
-
-    for (let i = 0; i < n; i++) {
-        const xField = document.getElementById("lsx" + i);
-        const yField = document.getElementById("lsy" + i);
-
-        if (!xField || !yField ||
-            xField.value.trim() === "" || yField.value.trim() === "") {
+    for (let i=0; i<n; i++) {
+        const xf = document.getElementById("lsx"+i);
+        const yf = document.getElementById("lsy"+i);
+        if (!xf || !yf || xf.value.trim()==="" || yf.value.trim()==="" ||
+            !Number.isFinite(Number(xf.value)) || !Number.isFinite(Number(yf.value))) {
             alert("Please fill in every X and Y value.");
             return;
         }
-
-        const xv = Number(xField.value);
-        const yv = Number(yField.value);
-
-        if (!Number.isFinite(xv) || !Number.isFinite(yv)) {
-            alert("Please enter valid numeric values.");
-            return;
-        }
-
-        x.push(xv);
-        y.push(yv);
+        x.push(Number(xf.value));
+        y.push(Number(yf.value));
     }
 
-    const resultBox = document.getElementById("lsResult");
-    resultBox.innerHTML = "<p>Calculating...</p>";
-
+    const out = document.getElementById("lsResult");
+    out.textContent = "Calculating...";
     try {
         const response = await fetch("/api/least-squares", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({
-                n: n,
-                x: x,
-                y: y
-            })
+            headers: {"Content-Type":"application/json"},
+            body: JSON.stringify({n, x, y})
         });
+        const data = await response.json();
+        if (!response.ok || data.error)
+            throw new Error(data.error || "Calculation failed.");
 
-        const result = await response.json();
-
-        if (!response.ok || result.error) {
-            throw new Error(result.error || "Calculation failed.");
-        }
-
-        let html = `
-            <h3>Fitted Model</h3>
-            <p><strong>${result.model}</strong></p>
-
-            <h3>Data and Predictions</h3>
-            <table>
-                <tr>
-                    <th>Data Point</th>
-                    <th>X</th>
-                    <th>Actual Y</th>
-                    <th>Predicted Y</th>
-                    <th>Residual</th>
-                </tr>
-        `;
-
-        result.predictions.forEach((p, i) => {
-            html += `
-                <tr>
-                    <td>${i + 1}</td>
-                    <td>${Number(p.x).toFixed(2)}</td>
-                    <td>${Number(p.actualY).toFixed(2)}</td>
-                    <td>${Number(p.predictedY).toFixed(4)}</td>
-                    <td>${Number(p.residual).toFixed(4)}</td>
-                </tr>
-            `;
+        let html = `<h3>Fitted Model</h3><p><strong>${mlEscape(data.model)}</strong></p>
+            <h3>Data and Predictions</h3><table><tr><th>Point</th><th>X</th>
+            <th>Actual Y</th><th>Predicted Y</th><th>Residual</th></tr>`;
+        data.predictions.forEach((p,i) => {
+            html += `<tr><td>${i+1}</td><td>${Number(p.x).toFixed(4)}</td>
+                <td>${Number(p.actualY).toFixed(4)}</td>
+                <td>${Number(p.predictedY).toFixed(4)}</td>
+                <td>${Number(p.residual).toFixed(4)}</td></tr>`;
         });
+        html += `</table><p>Intercept (a): ${Number(data.intercept).toFixed(6)}</p>
+            <p>Slope (b): ${Number(data.slope).toFixed(6)}</p>
+            <p><strong>Residual Sum of Squares (RSS): ${Number(data.rss).toFixed(8)}</strong></p>`;
+        out.innerHTML = html;
 
-        html += `
-            </table>
-
-            <h3>Calculation Results</h3>
-            <p>Intercept (a): ${Number(result.intercept).toFixed(4)}</p>
-            <p>Slope (b): ${Number(result.slope).toFixed(4)}</p>
-            <p><strong>Residual Sum of Squares (RSS): ${
-                Number(result.rss).toFixed(6)
-            }</strong></p>
-        `;
-
-        resultBox.innerHTML = html;
-
-    } catch (error) {
-        resultBox.innerHTML =
-            "<p>" + error.message +
-            " Check that Spring Boot is running and the /api/least-squares endpoint exists.</p>";
+        addExplanation(out, "Least Squares — Explanation", `
+            <p>The program fits a straight line ŷ = a + bx to the entered
+            data points. The intercept a and slope b are selected to minimise
+            the sum of squared differences between actual and predicted values.</p>
+            <p>For each point, the residual is eᵢ = actual yᵢ − predicted yᵢ.</p>
+            <p>The residual sum of squares is RSS = Σ(actual yᵢ − predicted yᵢ)².
+            A smaller RSS means a smaller total squared error for these data.</p>
+            <p><strong>Fitted model:</strong> ${mlEscape(data.model)}</p>
+            <p>Intercept = ${Number(data.intercept).toFixed(6)};
+            slope = ${Number(data.slope).toFixed(6)};
+            RSS = ${Number(data.rss).toFixed(8)}.</p>
+            <p><strong>Predictions and residuals:</strong></p>
+            <table><tr><th>Point</th><th>Actual Y</th><th>Predicted Y</th><th>Residual</th></tr>
+            ${data.predictions.map((p,i) => `<tr><td>${i+1}</td>
+            <td>${Number(p.actualY).toFixed(4)}</td><td>${Number(p.predictedY).toFixed(4)}</td>
+            <td>${Number(p.residual).toFixed(4)}</td></tr>`).join("")}</table>`);
+    } catch (e) {
+        out.innerHTML = `<p style="color:#b00020">${mlEscape(e.message)}
+            Check that Spring Boot is running and the /api/least-squares endpoint exists.</p>`;
     }
 }
+/* MATHEMATICAL EXPRESSION EVALUATOR */
+function mlEvaluate(expression, values) {
+    const source = expression.replace(/×/g,"*").replace(/÷/g,"/")
+        .replace(/−/g,"-").replace(/π/g,"pi").trim();
+    const tokens = source.match(
+        /(?:\d*\.\d+(?:e[+-]?\d+)?|\d+(?:\.\d*)?(?:e[+-]?\d+)?|[a-zA-Z_][a-zA-Z_0-9]*|\*\*|[()+\-*/^,])/gi
+    );
+    if (!tokens || tokens.join("").length !== source.replace(/\s+/g,"").length)
+        throw new Error("Unsupported expression. Use explicit multiplication, for example 2*x + y^2.");
 
+    let pos = 0;
+    const peek = () => tokens[pos];
+    const take = () => tokens[pos++];
+    const funcs = {
+        sin:Math.sin, cos:Math.cos, tan:Math.tan,
+        asin:Math.asin, acos:Math.acos, atan:Math.atan,
+        sqrt:Math.sqrt, abs:Math.abs, exp:Math.exp,
+        log:Math.log, ln:Math.log, log10:Math.log10,
+        floor:Math.floor, ceil:Math.ceil
+    };
+
+    function primary() {
+        const t = take();
+        if (t === undefined) throw new Error("Incomplete expression.");
+        if (t === "+") return primary();
+        if (t === "-") return -primary();
+        if (t === "(") {
+            const v = addSub();
+            if (take() !== ")") throw new Error("Missing closing parenthesis.");
+            return v;
+        }
+        if (/^(?:\d|\.)/.test(t)) return Number(t);
+
+        const name = t.toLowerCase();
+        if (Object.prototype.hasOwnProperty.call(values,name)) return values[name];
+        if (name === "pi") return Math.PI;
+        if (name === "e") return Math.E;
+
+        if (funcs[name]) {
+            if (take() !== "(") throw new Error(`Write ${name} as ${name}(expression).`);
+            const v = addSub();
+            if (take() !== ")") throw new Error(`Missing closing parenthesis after ${name}.`);
+            return funcs[name](v);
+        }
+        throw new Error("Unknown variable or function: " + t);
+    }
+
+    function power() {
+        let v = primary();
+        if (peek() === "^" || peek() === "**") {
+            take();
+            v = Math.pow(v, unary());
+        }
+        return v;
+    }
+    function unary() {
+        if (peek() === "+") { take(); return unary(); }
+        if (peek() === "-") { take(); return -unary(); }
+        return power();
+    }
+    function mul() {
+        let v = unary();
+        while (peek() === "*" || peek() === "/") {
+            const op = take(), r = unary();
+            v = op === "*" ? v*r : v/r;
+        }
+        return v;
+    }
+    function addSub() {
+        let v = mul();
+        while (peek() === "+" || peek() === "-") {
+            const op = take(), r = mul();
+            v = op === "+" ? v+r : v-r;
+        }
+        return v;
+    }
+
+    const result = addSub();
+    if (pos !== tokens.length) throw new Error("Unexpected input: " + tokens[pos]);
+    if (!Number.isFinite(result))
+        throw new Error("The function is undefined at these values. Check division by zero, logarithms, or square roots.");
+    return result;
+}
+
+function mlPartial(expression, values, variable) {
+    const h = 0.0001;
+    const plus = {...values, [variable]:values[variable]+h};
+    const minus = {...values, [variable]:values[variable]-h};
+    const fp = mlEvaluate(expression,plus);
+    const fm = mlEvaluate(expression,minus);
+    return {value:(fp-fm)/(2*h), plus:fp, minus:fm, h};
+}
+
+function parseVariablesAndValues(variableText, valueText) {
+    const vars = variableText.split(",").map(v => v.trim().toLowerCase());
+    const raw = valueText.split(",").map(v => v.trim());
+    const reserved = new Set([
+        "pi","e","sin","cos","tan","asin","acos","atan",
+        "sqrt","abs","exp","log","ln","log10","floor","ceil"
+    ]);
+    if (vars.length < 1 ||
+        vars.some(v => !/^[a-z][a-z0-9_]*$/.test(v)) ||
+        new Set(vars).size !== vars.length)
+        throw new Error("Enter unique variable names, such as x,y,z,t.");
+    if (vars.some(v => reserved.has(v)))
+        throw new Error("Do not use a function name or constant as a variable.");
+    if (raw.length !== vars.length ||
+        raw.some(v => v === "" || !Number.isFinite(Number(v))))
+        throw new Error(`Enter exactly ${vars.length} numeric values in this order: ${vars.join(", ")}.`);
+    const values = {};
+    vars.forEach((v,i) => values[v] = Number(raw[i]));
+    return {vars, values};
+}
+
+/* PROGRAM 7: GENERAL GRADIENT FUNCTION */
 function openGradientFunction() {
     showCalculator("Gradient Function");
-
-    calculator.innerHTML = `
-        <h2>Gradient Function</h2>
-
-        <p><strong>Given function:</strong></p>
-        <p>f(x,y,z) = x² + y² + z²</p>
-
-        <label>Enter x:</label>
-        <input type="number" id="gradientX" step="any" placeholder="Enter x">
-
-        <br><br>
-
-        <label>Enter y:</label>
-        <input type="number" id="gradientY" step="any" placeholder="Enter y">
-
-        <br><br>
-
-        <label>Enter z:</label>
-        <input type="number" id="gradientZ" step="any" placeholder="Enter z">
-
-        <br><br>
-
+    document.getElementById("calculatorContent").innerHTML = `
+        <h3>Gradient Function</h3>
+        <p>Enter a function, its variables, and one value for each variable.</p>
+        <label for="gradientExpression">Function f:</label><br>
+        <input id="gradientExpression" type="text" value="x^2 + y^2 + z^2"
+            style="width:min(100%,600px)" placeholder="e.g. x^3 + y^2 + t^4">
+        <p>Variables, comma-separated:</p>
+        <input id="gradientVariables" type="text" value="x,y,z"
+            style="width:min(100%,400px)" placeholder="x,y,z,t">
+        <p>Values in the same order:</p>
+        <input id="gradientValues" type="text" value="1,1,1"
+            style="width:min(100%,400px)" placeholder="1,2,0,3">
+        <p>Use ^ for powers and * for multiplication, e.g. 2*x.
+        Supported functions include sin, cos, tan, sqrt, exp, log, ln,
+        log10 and abs. Trigonometric functions use radians.</p>
         <button onclick="calculateGradient()">Calculate Gradient</button>
-
-        <div id="gradientResult"></div>
-    `;
+        <div id="gradientResult" class="result"></div>`;
 }
-async function calculateGradient() {
-    const x = document.getElementById("gradientX").value;
-    const y = document.getElementById("gradientY").value;
-    const z = document.getElementById("gradientZ").value;
 
-    const resultDiv = document.getElementById("gradientResult");
+function calculateGradient() {
+    const expr = document.getElementById("gradientExpression").value.trim();
+    const out = document.getElementById("gradientResult");
+    try {
+        if (!expr) throw new Error("Enter a function first.");
+        const {vars, values} = parseVariablesAndValues(
+            document.getElementById("gradientVariables").value,
+            document.getElementById("gradientValues").value
+        );
+        const f = mlEvaluate(expr,values);
+        const parts = vars.map(v => [v,mlPartial(expr,values,v)]);
+        const fmt = n => Number(n).toPrecision(8)
+            .replace(/(?:\.0+|(\.\d*?)0+)$/,"$1");
 
-    if (x === "" || y === "" || z === "") {
-        resultDiv.innerHTML =
-            "<p>Please enter values for x, y, and z.</p>";
+        out.innerHTML = `<h3>Gradient Result</h3>
+            <p><strong>Function:</strong> f = ${mlEscape(expr)}</p>
+            <p><strong>Point:</strong> (${vars.map(v => `${v}=${values[v]}`).join(", ")})</p>
+            <p><strong>Function value:</strong> ${fmt(f)}</p>
+            ${parts.map(([v,p]) => `<p><strong>∂f/∂${mlEscape(v)} ≈</strong> ${fmt(p.value)}</p>`).join("")}
+            <p><strong>Gradient vector:</strong> (${parts.map(([v,p]) => fmt(p.value)).join(", ")})</p>
+            <p><em>Partial derivatives are numerical estimates using central differences.</em></p>`;
+
+        const worked = parts.map(([v,p]) => `<li>
+            <strong>∂f/∂${mlEscape(v)}:</strong>
+            [f(${v}=${values[v]}+h) − f(${v}=${values[v]}−h)]/(2h)
+            = [${fmt(p.plus)} − (${fmt(p.minus)})]/0.0002
+            ≈ <strong>${fmt(p.value)}</strong>. Other variables are held fixed.
+            </li>`).join("");
+
+        addExplanation(out,"Gradient Function — Explanation",`
+            <p>The entered function is f = ${mlEscape(expr)}.</p>
+            <p>At the chosen point, f ≈ ${fmt(f)}.</p>
+            <p>To estimate each partial derivative, the calculator changes one
+            variable slightly while holding the other variables fixed. It then
+            compares the two function values using the central-difference
+            formula [f(point+h) − f(point−h)]/(2h), with h = 0.0001.</p>
+            <ol>${worked}</ol>
+            <p><strong>Gradient vector:</strong>
+            (${parts.map(([v,p]) => fmt(p.value)).join(", ")}) in the order
+            (${vars.map(mlEscape).join(", ")}).</p>`);
+    } catch (e) {
+        out.innerHTML = `<p style="color:#b00020"><strong>Could not calculate:</strong>
+            ${mlEscape(e.message)}</p>`;
+    }
+}
+/* PROGRAM 8: GENERAL GRADIENT AND 2D GRADIENT SLICE */
+function openGradientQuiverPlot() {
+    showCalculator("Gradient Quiver Plot");
+    document.getElementById("calculatorContent").innerHTML = `
+        <h3>Gradient Quiver Plot / General Gradient</h3>
+        <p>Enter an equation and any number of variables, for example
+        x,y,z,t. The plot varies two selected variables and holds the others
+        at the values you enter.</p>
+        <label for="quiverExpression">Function f:</label><br>
+        <input type="text" id="quiverExpression" value="x^2 + y^2 + z^2"
+            style="width:min(100%,600px)" placeholder="e.g. x^3 + y^2 + t^4">
+        <p>Variables, comma-separated:</p>
+        <input type="text" id="quiverVariables" value="x,y,z"
+            style="width:min(100%,400px)" oninput="updateQuiverAxes()"
+            placeholder="x,y,z,t">
+        <p>Values in the same order:</p>
+        <input type="text" id="quiverValues" value="1,1,1"
+            style="width:min(100%,400px)" placeholder="1,2,0,3">
+        <p>Use ^ for powers and * for multiplication, e.g. 2*x.
+        Supported functions include sin, cos, tan, sqrt, exp, log, ln,
+        log10 and abs. Trigonometric functions use radians.</p>
+        <div id="quiverAxes"></div>
+        <button onclick="calculateGeneralGradientQuiver()">Calculate Gradient and Draw Slice</button>
+        <div id="quiverResult" class="result"></div>`;
+    updateQuiverAxes();
+}
+
+function updateQuiverAxes() {
+    const input = document.getElementById("quiverVariables");
+    const axes = document.getElementById("quiverAxes");
+    if (!input || !axes) return;
+
+    const vars = input.value.split(",")
+        .map(v => v.trim().toLowerCase()).filter(Boolean);
+    const oldA = document.getElementById("quiverAxisA")?.value;
+    const oldB = document.getElementById("quiverAxisB")?.value;
+
+    if (vars.length < 2) {
+        axes.innerHTML = "<p>Enter at least two variables to draw a 2D slice.</p>";
         return;
     }
 
+    const options = vars.map(v =>
+        `<option value="${mlEscape(v)}">${mlEscape(v)}</option>`).join("");
+    axes.innerHTML = `<p>Plot axes:
+        <label for="quiverAxisA">Horizontal:</label>
+        <select id="quiverAxisA">${options}</select>
+        <label for="quiverAxisB">Vertical:</label>
+        <select id="quiverAxisB">${options}</select></p>`;
+
+    const a = document.getElementById("quiverAxisA");
+    const b = document.getElementById("quiverAxisB");
+    a.value = vars.includes(oldA) ? oldA : vars[0];
+    b.value = vars.includes(oldB) && oldB !== a.value
+        ? oldB : (vars.find(v => v !== a.value) || vars[1]);
+
+    a.addEventListener("change", () => {
+        if (a.value === b.value) b.value = vars.find(v => v !== a.value) || vars[1];
+    });
+    b.addEventListener("change", () => {
+        if (b.value === a.value) a.value = vars.find(v => v !== b.value) || vars[0];
+    });
+}
+
+function calculateGeneralGradientQuiver() {
+    const expr = document.getElementById("quiverExpression").value.trim();
+    const out = document.getElementById("quiverResult");
+
     try {
-        const response = await fetch(
-            `/api/gradient?x=${encodeURIComponent(x)}&y=${encodeURIComponent(y)}&z=${encodeURIComponent(z)}`
+        if (!expr) throw new Error("Enter a function first.");
+        const {vars, values} = parseVariablesAndValues(
+            document.getElementById("quiverVariables").value,
+            document.getElementById("quiverValues").value
         );
 
-        if (!response.ok) {
-            throw new Error("Unable to calculate the gradient.");
-        }
+        const f = mlEvaluate(expr,values);
+        const parts = vars.map(v => [v,mlPartial(expr,values,v)]);
+        if (parts.some(([v,p]) => !Number.isFinite(p.value)))
+            throw new Error("The gradient is undefined at this point. Try different values.");
 
-        const data = await response.json();
+        const fmt = n => Number(n).toPrecision(7)
+            .replace(/(?:\.0+|(\.\d*?)0+)$/,"$1");
+        let html = `<h3>Gradient Result</h3>
+            <p><strong>Function:</strong> f = ${mlEscape(expr)}</p>
+            <p><strong>Point:</strong> ${vars.map(v => `${mlEscape(v)}=${values[v]}`).join(", ")}</p>
+            <p><strong>Function value:</strong> ${fmt(f)}</p>
+            ${parts.map(([v,p]) => `<p><strong>∂f/∂${mlEscape(v)} ≈</strong> ${fmt(p.value)}</p>`).join("")}
+            <p><strong>Gradient vector:</strong>
+            (${parts.map(([v,p]) => fmt(p.value)).join(", ")})</p>
+            <p><em>Components are numerical estimates, not symbolic exact derivatives.</em></p>`;
 
-        resultDiv.innerHTML = `
-            <h3>Result</h3>
-            <p><strong>Function:</strong> ${data.function}</p>
-            <p><strong>∂f/∂x =</strong> ${Number(data.df_dx).toFixed(4)}</p>
-            <p><strong>∂f/∂y =</strong> ${Number(data.df_dy).toFixed(4)}</p>
-            <p><strong>∂f/∂z =</strong> ${Number(data.df_dz).toFixed(4)}</p>
-            <p><strong>Gradient =</strong> ${data.gradient}</p>
-        `;
-    } catch (error) {
-        resultDiv.innerHTML =
-            "<p>Calculation failed. Please check that your website server is running.</p>";
-    }
-}
-async function openGradientQuiverPlot() {
-    showCalculator("Gradient Quiver Plot");
+        const a = document.getElementById("quiverAxisA")?.value;
+        const b = document.getElementById("quiverAxisB")?.value;
 
-    const content = document.getElementById("calculatorContent");
+        if (a && b && a !== b && vars.includes(a) && vars.includes(b)) {
+            const arrows = {O:"•",N:"↑",S:"↓",E:"→",W:"←",
+                NE:"↗",NW:"↖",SE:"↘",SW:"↙", "?":"?"};
+            const grid = [];
 
-    content.innerHTML = `
-        <h3>Gradient Field of f(x,y) = x² + y²</h3>
-        <p><strong>Gradient:</strong> ∇f = (2x, 2y)</p>
-        <p>The arrows show the gradient direction at each point.</p>
-        <div id="quiverResult">Loading gradient field...</div>
-    `;
-
-    try {
-        const response = await fetch("/api/gradient-quiver");
-
-        if (!response.ok) {
-            throw new Error("Unable to load the gradient field.");
-        }
-
-        const data = await response.json();
-
-        const arrows = {
-            O: "•",
-            N: "↑",
-            S: "↓",
-            E: "→",
-            W: "←",
-            NE: "↗",
-            NW: "↖",
-            SE: "↘",
-            SW: "↙"
-        };
-
-        let html = `
-            <h3>${data.function}</h3>
-            <p>${data.gradient}</p>
-            <div style="overflow-x:auto;">
-            <table style="border-collapse:collapse; text-align:center; margin:auto;">
-        `;
-
-        for (let y = 3; y >= -3; y--) {
-            html += "<tr>";
-
-            for (let x = -3; x <= 3; x++) {
-                const point = data.field.find(
-                    p => p.x === x && p.y === y
-                );
-
-                html += `
-                    <td title="x=${x}, y=${y}"
-                        style="width:45px;height:45px;border:1px solid #ccc;font-size:24px;">
-                        ${arrows[point.direction]}
-                    </td>
-                `;
+            for (let j=-3; j<=3; j++) {
+                for (let i=-3; i<=3; i++) {
+                    const point = {...values,[a]:i,[b]:j};
+                    try {
+                        const gx = mlPartial(expr,point,a).value;
+                        const gy = mlPartial(expr,point,b).value;
+                        let d = "?";
+                        if (Number.isFinite(gx) && Number.isFinite(gy)) {
+                            if (Math.hypot(gx,gy) < 1e-7) d = "O";
+                            else {
+                                const dirs = ["E","NE","N","NW","W","SW","S","SE"];
+                                d = dirs[(Math.round(Math.atan2(gy,gx)/(Math.PI/4))+8)%8];
+                            }
+                        }
+                        grid.push({i,j,gx,gy,d});
+                    } catch (_) {
+                        grid.push({i,j,gx:NaN,gy:NaN,d:"?"});
+                    }
+                }
             }
 
-            html += "</tr>";
+            html += `<h3>2D Gradient Slice: ${mlEscape(a)} and ${mlEscape(b)}</h3>
+                <p>Other variables stay fixed at their entered values.
+                Each arrow shows the approximate gradient direction.</p>
+                <div style="overflow-x:auto"><table style="border-collapse:collapse;text-align:center;margin:auto">`;
+            for (let j=3; j>=-3; j--) {
+                html += "<tr>";
+                for (let i=-3; i<=3; i++) {
+                    const p = grid.find(q => q.i===i && q.j===j);
+                    const title = `${a}=${i}, ${b}=${j}; gradient≈(${Number.isFinite(p.gx)?p.gx.toPrecision(4):"undefined"}, ${Number.isFinite(p.gy)?p.gy.toPrecision(4):"undefined"})`;
+                    html += `<td title="${mlEscape(title)}"
+                        style="width:42px;height:42px;border:1px solid #ccc;font-size:22px">
+                        ${arrows[p.d] || "?"}</td>`;
+                }
+                html += "</tr>";
+            }
+            html += `</table></div>
+                <p><strong>Legend:</strong> arrows show gradient direction;
+                • zero gradient; ? undefined.</p>`;
         }
 
-        html += `
-            </table>
-            </div>
-            <p><strong>Legend:</strong></p>
-            <p>↑ North | ↓ South | → East | ← West</p>
-            <p>↗ Northeast | ↖ Northwest</p>
-            <p>↘ Southeast | ↙ Southwest | • Origin</p>
-        `;
+        out.innerHTML = html;
+        const worked = parts.map(([v,p]) => `<li>
+            <strong>∂f/∂${mlEscape(v)}:</strong>
+            [f(${v}=${values[v]}+h) − f(${v}=${values[v]}−h)]/(2h)
+            = [${fmt(p.plus)} − (${fmt(p.minus)})]/0.0002
+            ≈ <strong>${fmt(p.value)}</strong>. Other variables remain fixed.
+            </li>`).join("");
 
-        document.getElementById("quiverResult").innerHTML = html;
-
-    } catch (error) {
-        document.getElementById("quiverResult").innerHTML = `
-            <p style="color:red;">
-                Unable to load the gradient plot.
-                Please check the Java server and controller.
-            </p>
-        `;
-
-        console.error(error);
+        addExplanation(out,"General Gradient — Explanation",`
+            <p><strong>Entered function:</strong> f = ${mlEscape(expr)}</p>
+            <p><strong>Chosen point:</strong>
+            ${vars.map(v => `${mlEscape(v)}=${values[v]}`).join(", ")}.</p>
+            <p><strong>Function value:</strong> f ≈ ${fmt(f)}.</p>
+            <p>The calculator estimates each partial derivative by changing
+            one variable by h = 0.0001 in both directions, evaluating the
+            function, and applying the central-difference formula.</p>
+            <ol>${worked}</ol>
+            <p><strong>Gradient vector:</strong>
+            (${parts.map(([v,p]) => fmt(p.value)).join(", ")}) in the order
+            (${vars.map(mlEscape).join(", ")}).</p>
+            <p>The plot varies ${mlEscape(a || "the horizontal variable")} and
+            ${mlEscape(b || "the vertical variable")}; other variables remain fixed.
+            Numerical estimates can be less accurate near singularities.</p>`);
+    } catch (e) {
+        out.innerHTML = `<p style="color:#b00020"><strong>Could not calculate:</strong>
+            ${mlEscape(e.message)}</p>`;
     }
 }
 </script>
-
 </body>
 </html>
